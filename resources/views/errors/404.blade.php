@@ -72,6 +72,7 @@
             <h3>Page not Found</h3>
         </div>
         @if (Route::has('login'))
+
             <div class="top-right links">
                 @auth
                     <a href="{{ url('/home') }}">Home</a>
