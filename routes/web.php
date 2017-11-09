@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'BlogController@index');
+Route::get('upload','Upload@show');
 Route::get('post/{slug}','BlogController@show');
 Route::get('post/{baz}', 'BlogController@show1')->where('baz', '.*');  // Anything
 

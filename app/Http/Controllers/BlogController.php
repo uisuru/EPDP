@@ -10,8 +10,8 @@ class BlogController extends Controller
     public function index()
     {
         //$posts = Post::all();
-        //$posts = Post::paginate(2);
-        $posts = Post::simplepaginate(3);
+        $posts = Post::paginate(2);
+        //$posts = Post::simplepaginate(3);
         return view('index',['posts' => $posts]);
     }
     public function show($slug){

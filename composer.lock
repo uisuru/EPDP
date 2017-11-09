@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "058ce2bc97026602d01598a9123b6a4d",
+    "content-hash": "ad162212ad8eb2ff8b5bb03b000bb8b7",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -66,6 +66,61 @@
                 "widgets"
             ],
             "time": "2017-10-05T23:02:35+00:00"
+        },
+        {
+            "name": "baum/baum",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/etrepat/baum.git",
+                "reference": "9290bed862d329aaaef666a71e0a2734afc28286"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/etrepat/baum/zipball/9290bed862d329aaaef666a71e0a2734afc28286",
+                "reference": "9290bed862d329aaaef666a71e0a2734afc28286",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.*",
+                "illuminate/database": "5.*",
+                "illuminate/events": "5.*",
+                "illuminate/filesystem": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "d11wtq/boris": "~1.0.10",
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Baum": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Estanislau Trepat",
+                    "email": "estanis@etrepat.com",
+                    "homepage": "http://etrepat.com"
+                }
+            ],
+            "description": "Baum is an implementation of the Nested Set pattern for Eloquent models.",
+            "keywords": [
+                "Laravel 4",
+                "database",
+                "eloquent",
+                "laravel",
+                "laravel 5",
+                "nested set"
+            ],
+            "time": "2015-03-04T12:07:54+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1212,6 +1267,54 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "jasekz/laradrop",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jasekz/laradrop.git",
+                "reference": "819b6c8b92fc19c0171885c9ebfca9942f510429"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jasekz/laradrop/zipball/819b6c8b92fc19c0171885c9ebfca9942f510429",
+                "reference": "819b6c8b92fc19c0171885c9ebfca9942f510429",
+                "shasum": ""
+            },
+            "require": {
+                "baum/baum": "~1.1",
+                "ext-fileinfo": "*",
+                "illuminate/support": "~5.0",
+                "intervention/image": "2.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Jasekz\\Laradrop": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jasek Zbigniew",
+                    "email": "zig@elegrit.com",
+                    "homepage": "http://elegrit.com"
+                }
+            ],
+            "description": "File manager using Dropzone.js for Laravel 5",
+            "keywords": [
+                "dropzone.js",
+                "file manager",
+                "file upload",
+                "laravel 5",
+                "php"
+            ],
+            "time": "2017-11-03T18:09:03+00:00"
         },
         {
             "name": "justinrainbow/json-schema",

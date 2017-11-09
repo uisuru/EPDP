@@ -54,7 +54,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
+        'laradrop' => [
+            'driver' => 'local',
+            'root' => public_path('storage/uploads/PDF'), // will put files in 'public/upload' directory
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),
