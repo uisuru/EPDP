@@ -13,6 +13,7 @@
 
 Route::get('/', 'BlogController@index');
 Route::get('post/{slug}','BlogController@show');
+Route::get('post/{baz}', 'BlogController@show1')->where('baz', '.*');  // Anything
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

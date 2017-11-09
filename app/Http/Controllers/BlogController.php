@@ -15,8 +15,16 @@ class BlogController extends Controller
         return view('index',['posts' => $posts]);
     }
     public function show($slug){
-
-        $post = Post::findBySlug($slug);
+            $post = Post::findBySlug($slug);
+        return view('post.show',['post'=>$post]);
+    }
+    public function show1($baz){
+        if (substr($baz, 0, 1).equalTo("#")){
+            $baz  = substr($baz, 1);
+            $post = Post::findBySlug($baz);
+        }else{
+            return null;
+        }
         return view('post.show',['post'=>$post]);
     }
 }
