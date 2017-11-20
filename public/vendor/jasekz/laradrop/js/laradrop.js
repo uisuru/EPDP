@@ -1,4 +1,4 @@
-jQuery.fn.laradrop = function(options) {	
+jQuery.fn.laradrop = function(options) {
     Dropzone.autoDiscover = false;
     options = options == undefined ? {} : options;
 
@@ -12,7 +12,7 @@ jQuery.fn.laradrop = function(options) {
     	csrfToken = options.csrfToken ? options.csrfToken : ( laradropObj.attr('laradrop-csrf-token') ? laradropObj.attr('laradrop-csrf-token') : null ),
     	csrfTokenField = options.csrfTokenField ? options.csrfTokenField : ( laradropObj.attr('laradrop-csrf-token-field') ? laradropObj.attr('laradrop-csrf-token-field') : '_token'),
     	actionConfirmationText = options.actionConfirmationText ? options.actionConfirmationText : 'Are you sure?',
-    	breadCrumbRootText = options.breadCrumbRootText ? options.breadCrumbRootText : 'Root Directory',
+    	breadCrumbRootText = options.breadCrumbRootText ? options.breadCrumbRootText : 'Root Folder',
         folderImage = options.folderImage ? options.folderImage : '/vendor/jasekz/laradrop/img/genericThumbs/folder.png',
     	onInsertCallback = options.onInsertCallback ? options.onInsertCallback : null,
     	onSuccessCallback = options.onSuccessCallback ? options.onSuccessCallback : null,
@@ -29,7 +29,7 @@ jQuery.fn.laradrop = function(options) {
     		preview: null,
     		file: null
     	};
-   
+
    // init containers, default options & data
    jQuery.ajax({
 	    url: containersUrl,

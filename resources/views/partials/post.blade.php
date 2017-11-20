@@ -15,7 +15,7 @@
             </th>
             <th class="post-preview">
                 <!--{{url()->current()}}#{{$post -> slug}}-->
-                <a data-fancybox data-src="#asasasa" data-options='{"src": "#{{$post -> slug}}", "touch": false, "smallBtn" : false}' href="javascript:;">
+                <a data-fancybox data-src="#" data-options='{"src": "#{{$post -> slug}}", "touch": false, "smallBtn" : false}' href="javascript:;">
                     <button class="button" style="vertical-align:middle"><span>Load Popup</span></button>
                 </a>
     <div style="display: none;width:80%;height: 80%;" id="{{$post -> slug}}">
