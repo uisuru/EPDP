@@ -15,7 +15,7 @@
     <!-- <link href="{x{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <script src="{x{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>-->
 </head>
-<body>
+<body  style="background-image: url('/img/login-back.jpg')">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">

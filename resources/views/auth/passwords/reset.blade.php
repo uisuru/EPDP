@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
+                <div class="panel-body" style="background: url({{'/storage/'.setting('site.site_background_img')}})">
                     <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
                         {{ csrf_field() }}
 
