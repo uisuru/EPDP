@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'fileDestinationPath'=>'uploads',
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Jasekz\Laradrop\LaradropServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

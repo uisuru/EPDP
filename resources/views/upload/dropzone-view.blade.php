@@ -5,7 +5,8 @@
     <!--<script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script>-->
     <script src="/js/laradrop/jquery1.11.2.min.js"></script>
     <link rel="stylesheet" href="http://demo.itsolutionstuff.com/plugin/bootstrap-3.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/js/dropzone/dropzone.css">
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>-->
     <script src="/js/dropzone/dropzone.js"></script>
 </head>

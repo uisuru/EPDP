@@ -15,7 +15,12 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::get('/', 'BlogController@index')->name('home');
 
-Route::get('upload','Upload@show');
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('upload','FilesController@upload');
+    Route::post('/handleUpload','FilesController@handleUpload');
+    Route::get('/deleteFile/{id}',['as'=>'deleteFile','uses'=>'FilesController@deleteFile']);
+});
+//Route::get('upload','Upload@show');
 
 Route::get('uploadd',function (){
    return view('upload.uploadD');
@@ -31,10 +36,13 @@ Route::post('contact',function (Request $request){
 });
 Route::get('post/{slug}','BlogController@show');
 //Route::get('post/{baz}', 'BlogController@show1')->where('baz', '.*');  // Anything
-Route::get('page/{slug}', 'PageController@show');
+
 
 Auth::routes();
 
 Route::get('/home', 'BlogController@index')->name('home');
 
 Route::get('/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+
+Route::get('{slug}', 'PageController@show');
+Route::get('page/{slug}', 'PageController@show');

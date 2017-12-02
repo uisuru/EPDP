@@ -17,7 +17,7 @@
 
                         <img src=' /storage/{{ Auth::user()->avatar }}' alt='' class='mx-auto rounded-circle img-fluid'>
                         <a style=' text-decoration: inherit;color: inherit;color: inherit;' href='{{ url('/logout') }}'>
-                         <button class='btn btn-block btn-outline-danger'><span class='fa fa-sign-out'></span> Log In</button></a>
+                         <button class='btn btn-block btn-outline-danger'><span class='fa fa-sign-out'></span> Log Out</button></a>
             </div>
             <!--/card-block-->
         </div>

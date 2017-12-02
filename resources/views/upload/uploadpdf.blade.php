@@ -11,7 +11,7 @@
     <script src="/js/laradrop/jquery-ui1.11.4.min.js"></script>
 
     <script src="/vendor/jasekz/laradrop/js/enyo.dropzone.js"></script>
-    <script src="/vendor/jasekz/laradrop/js/laradrop.js"></script>
+    <script src="/public/vendor/jasekz/laradrop/js/laradrop.js"></script>
 <!--<script src="/vendor/jasekz/laradrop/js/laradrop.js"></script>-->
 </head>
 <body>

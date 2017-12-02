@@ -19,7 +19,8 @@ class dropzoneController extends Controller
      */
     public function dropzone()
     {
-        return view('upload.dropzone-view');
+        //return view('upload.dropzone-view');
+        return view('upload.uploadD');
     }
 
     /**
