@@ -33,7 +33,7 @@
                 </th>
                 <th class="post-preview">
                         <p class="post-meta" style="margin-top: 8px">Asked by
-                            <a href="#" >{{$post->author->name}}</a>
+                            <a href="/profile/{{$post -> author->username}}" >{{$post->author->name}}</a>
                             on {{$post->created_at->format('F d, Y')}}
                         </p>
                 </th>
@@ -51,7 +51,7 @@
         ?>
     </p>
     <p class="post-meta">Asked by
-        <a href="#">{{$post->author->name}}</a>
+        <a href="/profile/{{$post -> author->username}}">{{$post->author->name}}</a>
         on {{$post->created_at->format('F d, Y')}}
     </p>
 </div>

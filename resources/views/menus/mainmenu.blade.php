@@ -1,7 +1,7 @@
 <ul class="navbar-nav ml-auto">
     @foreach($items as $menu_item)
         <li class="nav-item">
-            <a class="nav-link" href="{{ $menu_item->url }}">
+            <a class="nav-link" href={{ env('APP.URL') }}"/{{ $menu_item->url }}">
                 {{ $menu_item->title }}
             </a>
         </li>
@@ -12,17 +12,23 @@
         <div class='card'>
                     <div class='card-body'>
 
-                                <h3 class='mb-0 text-truncated' style='text-transform: uppercase;'></i> {{ Auth::user()->name }}</h3>
+                                <h4 class='mb-0 text-truncated' style='text-transform: uppercase;'></i> {{ Auth::user()->name }} {{ Auth::user()->lastname }}</h4>
                         <p class='lead'>Web / UI Designer</p>
+                        <p align='middle'><img height='150' width='150' src='/storage/{{ Auth::user()->avatar }}' alt='Avatar not Found or Load Error' class='rounded-circle'></p>
 
-                        <img src=' /storage/{{ Auth::user()->avatar }}' alt='' class='mx-auto rounded-circle img-fluid'>
+                        <a style=' text-decoration: inherit;color: inherit;color: inherit;' href='{{ url('/dashboard') }}'>
+                         <button class='btn btn-block btn-outline-info'><span class='fa fa-tachometer'></span> Goto Dashboard</button></a>
+
+                        <a style=' text-decoration: inherit;color: inherit;color: inherit;' href='{{ url('/profile') }}'>
+                         <button class='btn btn-block btn-outline-success'><span class='fa fa-sign-out'></span> Edit My Profile</button></a>
+
                         <a style=' text-decoration: inherit;color: inherit;color: inherit;' href='{{ url('/logout') }}'>
                          <button class='btn btn-block btn-outline-danger'><span class='fa fa-sign-out'></span> Log Out</button></a>
             </div>
             <!--/card-block-->
         </div>
         ">
-            <i class="fa fa-user" aria-hidden="true"></i>  {{ Auth::user()->name }}
+            <i class="fa fa-user" aria-hidden="true"></i>  {{ Auth::user()->username }}
         </button>
         <script>
             $(document).ready(function(){

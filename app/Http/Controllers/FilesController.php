@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class FilesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +36,7 @@ class FilesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +47,7 @@ class FilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +58,7 @@ class FilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,8 +69,8 @@ class FilesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -77,7 +81,7 @@ class FilesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -89,37 +93,52 @@ class FilesController extends Controller
     {
         //dd($request->all());
         //if($request->hasFile('file')){
-            $file = $request->file('file');
-            $allowedFileType =  'pdf,jpg,png,jpeg';
-            $maxFileSize = 1000;//1MB = 1000
-            $rules =[
-              'file' => 'required|mimes:'.$allowedFileType.'|max:'.$maxFileSize
-            ];
-            $this->validate($request, $rules);
-            $filename = $file->getClientOriginalName();
-            $destinationPath = config('app.fileDestinationPath').'/'.Auth::user()->email.'/'.$filename;
-            $uploaded = Storage::put($destinationPath,file_get_contents($file->getRealPath()));
+        $file = $request->file('file');
+        $allowedFileType = 'pdf,jpg,png,jpeg';
+        $maxFileSize = 1000;//1MB = 1000
+        $rules = [
+            'file' => 'required|mimes:' . $allowedFileType . '|max:' . $maxFileSize
+        ];
+        $this->validate($request, $rules);
+        $filename = $file->getClientOriginalName();
+        $file_type = $file->clientExtension();
+        $user_id = Auth::user()->id;
+        $destinationPath = config('app.fileDestinationPath') . '/' . Auth::user()->email . '/' . $filename;
+        $destinationPathLocal = 'storage/uploads' . '/' . Auth::user()->email . '/' . $filename;
+        $uploaded = Storage::put($destinationPath, file_get_contents($file->getRealPath()));
 
-            if($uploaded){
-                UploadedFile::create([
-                    'filename'=>$filename
-                ]);
-            }
-       // }
+        if ($uploaded) {
+            UploadedFile::create([
+                'user_id' => $user_id,
+                'filename' => $filename,
+                'destination_path'=>$destinationPathLocal,
+                'file_type' => $file_type
+            ]);
+        }
+        // }
         return redirect()->to('/upload');
     }
+
     public function upload()
     {
         //$directory = config('app.fileDestinationPath').'/'.Auth::user()->email;
         //$files = Storage::files($directory);
         //$folders = Storage::directories($directory);//frome directory
         $files = UploadedFile::all();
-        return view('files.upload')->with(array('files'=>$files));
+        $filesMyPdf = UploadedFile::where('user_id', Auth::user()->id)->where('file_type', 'pdf')->get();
+        $fileMyImage = UploadedFile::where('user_id', Auth::user()->id)
+            ->where(function ($q) {
+                $q->where('file_type', 'jpg')
+                    ->orwhere('file_type', 'jpeg')
+                    ->orwhere('file_type', 'png');
+            })->get();
+        return view('files.upload')->with(array('files' => $files, 'fileMyImage' => $fileMyImage, 'filesMyPdf' => $filesMyPdf));
     }
+
     public function deleteFile($id)
     {
         $file = UploadedFile::find($id);
-        Storage::delete(config('app.fileDestinationPath').'/'.Auth::user()->email.'/'.$file->filename);
+        Storage::delete(config('app.fileDestinationPath') . '/' . Auth::user()->email . '/' . $file->filename);
         //UploadedFile::destroy($id);
         $file->delete();
         return redirect()->to('/upload');

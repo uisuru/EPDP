@@ -21,15 +21,15 @@
 @section('content')
     <div class="row">
         @if(count($errors))
-            <ui>
+            <div class="alert alert-info alert-dismissable">
                 @foreach($errors->all() as $error)
-                    <li>{{$error}}</li>
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-coffee"></i>
+                    <strong>{{$error}}</strong>
                 @endforeach
-            </ui>
-            <br>
+            </div>
         @endif
     </div>
-    <br>
     <div class="row">
         {!! Form::open(array('url'=> '/handleUpload','files'=>true)) !!}
         {!! Form::file('file') !!}
@@ -97,12 +97,15 @@
             <table id="myTable1">
                 <tr class="header">
                     <th style="width:60%;">Name</th>
+                    <th style="width:60%;">Avatar</th>
                     <th style="width:40%;">Delete</th>
                 </tr>
 
                 @foreach($fileMyImage as $file)
                     <tr>
                         <td>{{$file->filename}}</td>
+                        <!--<td><img src="{$file->destination_path}}"></td>-->
+                        <td><img src="{{URL::asset($file->destination_path)}}" height="100" width="100" /></td>
                         <td>{{link_to_route('deleteFile','Delete',[$file->id])}}</td>
                     </tr>
                 @endforeach

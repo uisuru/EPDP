@@ -5,6 +5,8 @@ namespace App;
 use App\Notifications\resetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use TCG\Voyager\Facades\Voyager;
+use TCG\Voyager\Models\Role;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -16,7 +18,7 @@ class User extends \TCG\Voyager\Models\User
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'name', 'email', 'password',
     ];
 
     /**
@@ -31,11 +33,31 @@ class User extends \TCG\Voyager\Models\User
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new resetPassword($token));
+    }
+
+    public function authorRole()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public static function findByUsername($user)
+    {
+        return static::where('username', $user)->first();
+    }
+
+    public static function isAdmin(){
+        $roleInformation = Voyager::model('Role')::where('id', \Auth::user()->role_id)->first();
+        return ($roleInformation->name=="admin")?true:false;
+    }
+    public static function isAdminById($id){
+        $roleInformation = Voyager::model('Role')::where('id', \Auth::user()->role_id)->first();
+        return ($roleInformation->name=="admin")?true:false;
     }
 }

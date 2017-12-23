@@ -9,7 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'dashboard'], function () {
     Voyager::routes();
 });
 
@@ -31,6 +31,14 @@ Route::post('dropzone/store', ['as'=>'dropzone.store','uses'=>'dropzoneControlle
 Route::get('contact',function (){
     return view('contact');
 });
+Route::get('test',function (){
+    return view('test');
+});
+Route::get('profile','UserController@profile');
+Route::get('profile/{data}', 'UserController@showProfile');
+Route::post('profileAvatar','UserController@update_Avatar');
+Route::post('profileUpdate','UserController@update_Profile');
+Route::post('profilePassword','UserController@update_Pass');
 Route::post('contact',function (Request $request){
     dd($request);
 });
