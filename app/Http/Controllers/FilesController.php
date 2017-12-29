@@ -95,7 +95,7 @@ class FilesController extends Controller
         //if($request->hasFile('file')){
         $file = $request->file('file');
         $allowedFileType = 'pdf,jpg,png,jpeg';
-        $maxFileSize = 1000;//1MB = 1000
+        $maxFileSize = 10000;//1MB = 1000
         $rules = [
             'file' => 'required|mimes:' . $allowedFileType . '|max:' . $maxFileSize
         ];

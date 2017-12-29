@@ -12,4 +12,8 @@ class Post extends Model
     public static function findBySlug($slug){
         return static::where('slug',$slug)->first();
     }
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
 }

@@ -42,9 +42,9 @@ Route::post('profilePassword','UserController@update_Pass');
 Route::post('contact',function (Request $request){
     dd($request);
 });
-Route::get('post/{slug}','BlogController@show');
+Route::get('post/{slug}',['as'=>'post.slug','uses'=>'BlogController@show']);
 //Route::get('post/{baz}', 'BlogController@show1')->where('baz', '.*');  // Anything
-
+Route::post('answers/{post_id}',['uses'=>'AnswerController@store','as'=>'answers.store']);
 
 Auth::routes();
 

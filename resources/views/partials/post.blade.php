@@ -15,11 +15,8 @@
             </th>
             <th class="post-preview">
                 <!--{{url()->current()}}#{{$post -> slug}}-->
-                <a data-fancybox data-src="#" data-options='{"src": "#{{$post -> slug}}", "touch": false, "smallBtn" : false}' href="javascript:;">
-                    <button class="button" style="vertical-align:middle"><span>Load Popup</span></button>
-                </a>
     <div style="display: none;width:80%;height: 80%;" id="{{$post -> slug}}">
-        <h2>{{$post->title}}</h2>
+        <h3>{{$post->title}}</h3>
 
         <?php
         $content= $post->body;
@@ -53,6 +50,14 @@
     <p class="post-meta">Asked by
         <a href="/profile/{{$post -> author->username}}">{{$post->author->name}}</a>
         on {{$post->created_at->format('F d, Y')}}
+
+        <a href="/post/{{$post -> slug}}"><button class="button" style="vertical-align:middle;background: rgb(119, 185, 73);">
+                <span>Read More...</span>
+            </button></a>
+
+        <a data-fancybox data-src="#" data-options='{"src": "#{{$post -> slug}}", "touch": false, "smallBtn" : false}' href="javascript:;">
+            <button class="button" style="vertical-align:middle;"><span>Instant Popup</span></button>
+        </a>
     </p>
 </div>
 <hr>

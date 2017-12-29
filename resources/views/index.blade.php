@@ -102,7 +102,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-10 col-md-8 mx-left">
             @foreach($posts as $post)
                 @include('partials.post',['post' => $post])
             @endforeach
