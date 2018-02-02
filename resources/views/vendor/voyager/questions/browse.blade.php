@@ -38,8 +38,7 @@
                                     </select>
                                     <select id="filter" name="filter">
                                         <option value="contains" @if($search->filter == "contains"){{ 'selected' }}@endif>
-                                            contains
-                                        </option>
+                                            contains</option>
                                         <option value="equals" @if($search->filter == "equals"){{ 'selected' }}@endif>
                                             =
                                         </option>

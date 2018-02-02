@@ -8,7 +8,7 @@
     @endforeach
 
         <li class="nav-item">
-        <button type="button" style="padding: 7px 15px;background-color: #868e9600;border-color: #868e9600;" class="btn btn-secondary" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-html="true" title="
+        <button type="button" style="color:#a7d98d; padding: 7px 0px; font-weight: bold; font-size: 14px; background-color: #868e9600;border-color: #868e9600;" class="nav-link btn btn-secondary" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-html="true" title="
         <div class='card'>
                     <div class='card-body'>
 
@@ -28,7 +28,8 @@
             <!--/card-block-->
         </div>
         ">
-            <i class="fa fa-user" aria-hidden="true"></i>  {{ Auth::user()->username }}
+            <i class="fa fa-user" aria-hidden="true"></i>
+            {{ Auth::user()->username }}
         </button>
         <script>
             $(document).ready(function(){

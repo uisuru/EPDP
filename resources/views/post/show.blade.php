@@ -8,8 +8,9 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-heading">
+                        <div style="height: 30px"></div>
                         <h2>{{$post -> title}}</h2>
-                        <h4>Problems look mighty small from 150 miles up</h4>
+                        <h4>{{$post -> excerpt}}</h4>
                         <span class="meta">Posted by
                 <a href="/profile/{{$post -> author->username}}">{{$post->author->name}}</a>
                 on {{$post->created_at->format('F d, Y')}}</span>
@@ -25,9 +26,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
+                    {!! $post->bodyImage !!}
                     {!! $post->body !!}
                 </div>
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <hr style="height: 1px;margin-bottom:-3px;background-image: -webkit-linear-gradient(left, rgba(66,133,244,.8), rgb(84, 253, 122), rgb(255, 53, 53));"/>

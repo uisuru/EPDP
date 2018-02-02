@@ -15,7 +15,12 @@
     <!-- <link href="{x{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <script src="{x{asset('vendor/bootstrap/js/bootstrap.js')}}"></script>-->
 </head>
-<body  style="background-image: url('/img/login-back.jpg')">
+<body  style="background:  no-repeat center center fixed;
+background-image: url('/img/login-back.jpg');
+-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">

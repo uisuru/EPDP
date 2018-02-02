@@ -6,6 +6,7 @@ use App\UploadedFile;
 use Illuminate\Http\Request;
 use Storage;
 use Illuminate\Support\Facades\Auth;
+use TCG\Voyager\Models\Category;
 
 class FilesController extends Controller
 {
@@ -95,7 +96,7 @@ class FilesController extends Controller
         //if($request->hasFile('file')){
         $file = $request->file('file');
         $allowedFileType = 'pdf,jpg,png,jpeg';
-        $maxFileSize = 10000;//1MB = 1000
+        $maxFileSize = 5000;//1MB = 1000
         $rules = [
             'file' => 'required|mimes:' . $allowedFileType . '|max:' . $maxFileSize
         ];
@@ -110,6 +111,8 @@ class FilesController extends Controller
         if ($uploaded) {
             UploadedFile::create([
                 'user_id' => $user_id,
+                'category_id' => $request->category_id,
+                'document_type'=> 0,
                 'filename' => $filename,
                 'destination_path'=>$destinationPathLocal,
                 'file_type' => $file_type
@@ -125,6 +128,7 @@ class FilesController extends Controller
         //$files = Storage::files($directory);
         //$folders = Storage::directories($directory);//frome directory
         $files = UploadedFile::all();
+        $categories = Category::all();
         $filesMyPdf = UploadedFile::where('user_id', Auth::user()->id)->where('file_type', 'pdf')->get();
         $fileMyImage = UploadedFile::where('user_id', Auth::user()->id)
             ->where(function ($q) {
@@ -132,7 +136,7 @@ class FilesController extends Controller
                     ->orwhere('file_type', 'jpeg')
                     ->orwhere('file_type', 'png');
             })->get();
-        return view('files.upload')->with(array('files' => $files, 'fileMyImage' => $fileMyImage, 'filesMyPdf' => $filesMyPdf));
+        return view('files.upload')->with(array('files' => $files, 'fileMyImage' => $fileMyImage, 'filesMyPdf' => $filesMyPdf,'categories'=>$categories));
     }
 
     public function deleteFile($id)

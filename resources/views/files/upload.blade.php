@@ -31,11 +31,28 @@
         @endif
     </div>
     <div class="row">
-        {!! Form::open(array('url'=> '/handleUpload','files'=>true)) !!}
-        {!! Form::file('file') !!}
-        {!! Form::token() !!}
-        {!! Form::submit('Upload') !!}
-        {!! Form::close() !!}
+        <div class="col-md-6">
+            {!! Form::open(array('url'=> '/handleUpload','files'=>true)) !!}
+            {!! Form::file('file') !!}
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="name">Upload Category</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <select class="form-control select2 select2-hidden-accessible" name="category_id"
+                            tabindex="-1" aria-hidden="true">
+                        @foreach($categories as $category)
+                            <option value=" {{$category->id}}"> {{$category->name}}</option>
+                        @endforeach
+                    </select>
+                    {!! Form::token() !!}
+                    {!! Form::submit('Upload') !!}
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
     </div>
     <br>
 
@@ -96,17 +113,23 @@
 
             <table id="myTable1">
                 <tr class="header">
-                    <th style="width:60%;">Name</th>
-                    <th style="width:60%;">Avatar</th>
-                    <th style="width:40%;">Delete</th>
+                    <th style="width:20%;">Name</th>
+                    <th style="width:30%;">Avatar</th>
+                    <th style="width:10%;">Category</th>
+                    <th style="width:20%;">Crop or Download</th>
+                    <th style="width:20%;">Ask Question</th>
                 </tr>
 
                 @foreach($fileMyImage as $file)
                     <tr>
                         <td>{{$file->filename}}</td>
                         <!--<td><img src="{$file->destination_path}}"></td>-->
-                        <td><img src="{{URL::asset($file->destination_path)}}" height="100" width="100" /></td>
-                        <td>{{link_to_route('deleteFile','Delete',[$file->id])}}</td>
+                        <td><img src="{{URL::asset($file->destination_path)}}" height="100" width="100"/></td>
+                        <td>
+                            {{$file->categories->name}}
+                        </td>
+                        <td>{{link_to_route('crop.image',$file->filename,[$file->id])}}</td>
+                        <td>{{link_to_route('ask.image','Ask from Image',[$file->id])}}</td>
                     </tr>
                 @endforeach
             </table>
@@ -118,13 +141,16 @@
             <table id="myTable2">
                 <tr class="header">
                     <th style="width:60%;">Name</th>
-                    <th style="width:40%;">Delete</th>
+                    <th style="width:20%;">Category</th>
+
                 </tr>
 
                 @foreach($filesMyPdf as $file)
                     <tr>
                         <td>{{$file->filename}}</td>
-                        <td>{{link_to_route('deleteFile','Delete',[$file->id])}}</td>
+                        <td>
+                            {{$file->categories->name}}
+                        </td>
                     </tr>
                 @endforeach
             </table>
@@ -137,7 +163,7 @@
                 <tr class="header">
                     <th style="width:60%;">Name</th>
                     <th style="width:60%;">Owner</th>
-                    <th style="width:40%;">Delete</th>
+                    <th style="width:20%;">Category</th>
                 </tr>
 
                 @foreach($files as $file)
@@ -146,7 +172,9 @@
                         <td>{{\App\User::findOrFail($file->user_id)->name}}
                             ({{\App\User::findOrFail($file->user_id)->email}})
                         </td>
-                        <td>{{link_to_route('deleteFile','Delete',[$file->id])}}</td>
+                        <td>
+                            {{$file->categories->name}}
+                        </td>
                     </tr>
                 @endforeach
             </table>

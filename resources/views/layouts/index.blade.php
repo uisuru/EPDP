@@ -2,7 +2,17 @@
 <html lang="en">
 
   <head>
-      <!-- CSS fancybox 3-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113088685-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-113088685-1');
+    </script>
+
+    <!-- CSS fancybox 3-->
       <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.min.css">
     <style>
       body {
@@ -15,6 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> @yield('title')</title>
 

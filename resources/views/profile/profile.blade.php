@@ -110,7 +110,16 @@
                         <i class="fa fa-info"></i>
                         You Can't Change Username and Email Address. If you want do so please contact the Administrator.
                     </div>
+                    <div class="flash-message">
+                        @foreach (['danger', 'warning', 'succes', 'info'] as $msg)
+                            @if(Session::has('alert-' . $msg))
 
+                                <p class="alert alert-{{ $msg.'s' }}">{{ Session::get('alert-' . $msg) }} <a
+                                            href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                </p>
+                            @endif
+                        @endforeach
+                    </div> <!-- end .flash-message -->
                     <label class="col-lg-3 control-label">Email:</label>
                     <div class="col-lg-8">
                         <input class="form-control" type="text" value="{{$user->email}}" readonly>
@@ -124,13 +133,13 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">First name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" name="fname" type="text" value="{{$user->name}}">
+                                <input class="form-control" name="name" type="text" value="{{$user->name}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Last name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" name="lname" type="text" value="{{$user->lastname}}">
+                                <input class="form-control" name="lname" type="text" value="{{$user->lName}}">
                             </div>
                         </div>
                         {!! Form::token() !!}

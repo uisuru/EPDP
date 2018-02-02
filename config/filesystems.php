@@ -51,13 +51,14 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => public_path('storage'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-        ],
-        'laradrop' => [
-            'driver' => 'local',
-            'root' => public_path('storage/uploads/PDF'), // will put files in 'public/upload' directory
+
+            //'driver' => 'local',//old
+            //'root' => storage_path('app/public'),
+            //'url' => env('APP_URL').'/storage',
+            //'visibility' => 'public',
         ],
         's3' => [
             'driver' => 's3',

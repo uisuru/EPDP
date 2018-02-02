@@ -94,11 +94,13 @@ class UserController extends Controller
     {
         return view('profile.profile', array('user' => Auth::user()));
     }
+
     public function showProfile($data)
     {
         $user = User::findByUsername($data);
-        return view('profile.showProfile',['user'=>$user]);
+        return view('profile.showProfile', ['user' => $user]);
     }
+
     public function update_Pass(Request $request)
     {
         $currentPassword = $request->current_password;
@@ -107,7 +109,7 @@ class UserController extends Controller
 
         if ($new_pass === $new_pass_1) {
             $user = Auth::user();
-            if (strlen($new_pass)>=6) {
+            if (strlen($new_pass) >= 6) {
                 if (\Hash::check($currentPassword, $user->password)) {
                     $user_id = $user->id;
                     $obj_user = User::find($user_id);
@@ -132,8 +134,14 @@ class UserController extends Controller
 
     public function update_Profile(Request $request)
     {
-        $fname = $request->fname;
-        echo $fname;
+        $user = Auth::user();
+        $user_id = $user->id;
+        $obj_user = User::find($user_id);
+        $obj_user->name = $request->name;
+        $obj_user->lName = $request->lname;
+        $obj_user->save();
+        $request->session()->flash('alert-succes', 'Profile upload succeed.');
+        return redirect()->to('/profile');
     }
 
     public function update_Avatar(Request $request)

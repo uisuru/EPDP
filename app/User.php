@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Notifications\resetPassword;
+use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use TCG\Voyager\Facades\Voyager;
@@ -18,7 +19,7 @@ class User extends \TCG\Voyager\Models\User
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'email', 'password',
+        'username', 'name','lName', 'email','contact_no', 'password', 'token'
     ];
 
     /**
@@ -59,5 +60,17 @@ class User extends \TCG\Voyager\Models\User
     public static function isAdminById($id){
         $roleInformation = Voyager::model('Role')::where('id', \Auth::user()->role_id)->first();
         return ($roleInformation->name=="admin")?true:false;
+    }
+    public static function isLecturerById($id){
+    $roleInformation = Voyager::model('Role')::where('id', \Auth::user()->role_id)->first();
+    return ($roleInformation->name=="lecturer")?true:false;
+    }
+    public function verified()
+    {
+        return $this->token===null;
+    }
+    public function sendVerificationEmail()
+    {
+        $this -> notify(new VerifyEmail($this));
     }
 }

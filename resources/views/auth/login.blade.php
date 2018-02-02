@@ -6,7 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
-
+                @if (Session::has('message'))
+                    <div class="alert alert-danger">{{ Session::get('message') }}</div>
+                @endif
                 <div class="panel-body" style="background: url({{'/storage/'.setting('site.site_background_img')}})">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
