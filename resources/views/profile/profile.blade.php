@@ -1,5 +1,4 @@
 @extends('layouts.index')
-
 @section('title', setting('site.title'))
 @section('header')
     <!-- Page Header -->

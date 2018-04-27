@@ -57,6 +57,10 @@ class User extends \TCG\Voyager\Models\User
         $roleInformation = Voyager::model('Role')::where('id', \Auth::user()->role_id)->first();
         return ($roleInformation->name=="admin")?true:false;
     }
+    public static function isLecturer(){
+        $roleInformation = Voyager::model('Role')::where('id', \Auth::user()->role_id)->first();
+        return ($roleInformation->name=="lecturer")?true:false;
+    }
     public static function isAdminById($id){
         $roleInformation = Voyager::model('Role')::where('id', \Auth::user()->role_id)->first();
         return ($roleInformation->name=="admin")?true:false;
