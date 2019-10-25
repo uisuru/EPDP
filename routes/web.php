@@ -69,7 +69,8 @@ Route::post('ask/{post_id}',['uses'=>'BlogController@store','as'=>'ask.store']);
 
 Route::get('/crop/image/{id}',['as'=>'crop.image','uses'=>'FileConverter@cropImage']);
 Route::get('crop','FileConverter@crop');
-Route::get('/pdf/{id}',['as'=>'pdf','uses'=>'FileConverter@pdf']);
+//Route::get('/pdf/{id}',['as'=>'pdf','uses'=>'FileConverter@pdf']);
+Route::get('/pdf/{id}',['as'=>'pdf','uses'=>'FileConverter@pdfNew']);
 
 Auth::routes();
 

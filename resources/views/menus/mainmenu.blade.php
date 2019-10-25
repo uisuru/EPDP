@@ -13,7 +13,7 @@
                     <div class='card-body'>
 
                                 <h4 class='mb-0 text-truncated' style='text-transform: uppercase;'></i> {{ Auth::user()->name }} {{ Auth::user()->lastname }}</h4>
-                        <p class='lead'>Web / UI Designer</p>
+                        <p class='lead'>{{ Auth::user()->email }}</p>
                         <p align='middle'><img height='150' width='150' src='/storage/{{ Auth::user()->avatar }}' alt='Avatar not Found or Load Error' class='rounded-circle'></p>
 
                         <a style=' text-decoration: inherit;color: inherit;color: inherit;' href='{{ url('/dashboard') }}'>
